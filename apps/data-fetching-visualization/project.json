@@ -1,0 +1,81 @@
+{
+  "name": "data-fetching-visualization",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/data-fetching-visualization/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/data-fetching-visualization",
+        "postcssConfig": "apps/data-fetching-visualization/postcss.config.js"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "data-fetching-visualization:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "data-fetching-visualization:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "data-fetching-visualization:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "data-fetching-visualization:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "data-fetching-visualization:build:development"
+        },
+        "production": {
+          "buildTarget": "data-fetching-visualization:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/apps/data-fetching-visualization"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/data-fetching-visualization"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/data-fetching-visualization/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "data-fetching-visualization:build"
+      }
+    }
+  },
+  "tags": []
+}
